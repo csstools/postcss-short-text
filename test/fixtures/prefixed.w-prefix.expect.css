@@ -1,0 +1,9 @@
+section {
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	color: dimgrey;
+	font-size: 1.25em;
+	line-height: 1.5;
+	letter-spacing: .05em;
+}
