@@ -2,13 +2,19 @@
 
 <img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
 
-[Short Text] is a [PostCSS] plugin use a shorthand text property in CSS.
+[Short Text] is a [PostCSS] plugin that lets you use a shorthand `text` property in CSS.
+
+This `text` property can map to several text-related properties, including `color`, `font-style`, `font-variant`, `font-weight`, `font-stretch`, `text-decoration`, `text-align`, `text-rendering`, `text-transform`, `white-space`, `font-size`, `line-height`, `letter-spacing`, and `word-spacing`.
 
 ```css
 /* before */
 
 section {
     text: bold center uppercase dimgrey 1.25em 1.5 .05em;
+}
+
+article {
+    text: 1.25em * .05em;
 }
 
 /* after */
@@ -22,7 +28,20 @@ section {
     line-height: 1.5;
     letter-spacing: .05em;
 }
+
+article {
+    font-size: 1.25em;
+    letter-spacing: .05em;
+}
 ```
+
+Properties are matched into thematic groups, which can be written out of order. However, once a property matches a group, any other matching properties for that group must then come before properties of another group. Within a group, asterisks indicate that an individual property should be skipped. The groups are:
+
+- `color`
+- `font-style`, `font-variant`, `font-weight`, `font-stretch`
+- `text-decoration`, `text-align`, `text-rendering`, `text-transform`
+- `white-space`
+- `font-size`, `line-height`, `letter-spacing`, `word-spacing`
 
 ## Usage
 
