@@ -4,8 +4,6 @@
 
 [Short Text] is a [PostCSS] plugin that lets you use a shorthand `text` property in CSS.
 
-This `text` property can map to several text-related properties, including `color`, `font-style`, `font-variant`, `font-weight`, `font-stretch`, `text-decoration`, `text-align`, `text-rendering`, `text-transform`, `white-space`, `font-size`, `line-height`, `letter-spacing`, and `word-spacing`.
-
 ```css
 /* before */
 
@@ -35,7 +33,7 @@ article {
 }
 ```
 
-Properties are matched into thematic groups, which can be written out of order. However, once a property matches a group, any other matching properties for that group must then come before properties of another group. Within a group, asterisks indicate that an individual property should be skipped. The groups are:
+Properties are matched into groups that may be written in any order. Once a property is matched to a group, other properties from that group must then be written before properties of another group. Asterisks indicate that an individual property in a group should be skipped. The groups include:
 
 - `color`
 - `font-style`, `font-variant`, `font-weight`, `font-stretch`
