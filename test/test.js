@@ -37,6 +37,7 @@ describe('postcss-short-text', function () {
 	it('ignores standard property with prefix', function (done) {
 		test('basic:w-prefix', { prefix: 'x' }, done);
 	});
+
 	it('ignores prefixed property', function (done) {
 		test('prefixed', {}, done);
 	});

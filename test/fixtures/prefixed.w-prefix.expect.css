@@ -7,3 +7,8 @@ section {
 	line-height: 1.5;
 	letter-spacing: .05em;
 }
+
+article {
+	font-size: 1.25em;
+	letter-spacing: .05em;
+}
