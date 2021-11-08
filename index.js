@@ -1,6 +1,6 @@
-var assign  = require('object-assign');
-var postcss = require('postcss');
-var matches = [{
+const postcss = require('postcss');
+
+const matches = [{
 	'color': /^(\*|aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|currentColor|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|inherit|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|rebeccapurple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|transparent|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|#[0-9a-f]+|(hsl|rgb)a?\(.+\))$/i
 }, {
 	'font-style': /^(\*|var\(.+\)|inherit|italic|normal|oblique)$/i,
@@ -21,24 +21,27 @@ var matches = [{
 	'word-spacing': /^(\*|(calc|var)\(.+\)|inherit|initial|normal|unset|0|[-+]?[0-9]*\.?[0-9]+(%|ch|cm|em|ex|in|mm|pc|pt|px|rem|vh|vmax|vmin|vw))$/i
 }];
 
-module.exports = postcss.plugin('postcss-short-text', function (opts) {
-	var name = opts && opts.prefix ? '-' + opts.prefix + '-text' : 'text';
+module.exports = (opts = {}) => {
+	const name = opts && opts.prefix ? '-' + opts.prefix + '-text' : 'text';
 
-	return function (css) {
-		css.walkDecls(name, function (decl) {
-			var values  = postcss.list.space(decl.value);
-			var sources = matches.slice(0).map(function (source) {
-				return assign({}, source);
-			});
+	return {
+		postcssPlugin: 'postcss-short-text',
+		Declaration (decl) {
+			if (decl.prop !== name) {
+				return
+			}
 
-			values.forEach(function (value) {
+			const values  = postcss.list.space(decl.value);
+			const sources = matches.slice(0).map((source) => Object.assign({}, source));
+
+			values.forEach((value) => {
 				all: {
-					var source;
+					let source
 
 					while (source = sources[0]) {
 						source.state = source.state || 'skipped';
 
-						for (var prop in source) {
+						for (const prop in source) {
 							if (prop !== 'state' && source[prop].test(value)) {
 								source.state = 'done';
 
@@ -61,6 +64,8 @@ module.exports = postcss.plugin('postcss-short-text', function (opts) {
 			});
 
 			decl.remove();
-		});
-	};
-});
+		}
+	}
+}
+
+module.exports.postcss = true;
