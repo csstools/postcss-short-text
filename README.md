@@ -1,6 +1,9 @@
-# Short Text [![Build Status][ci-img]][ci]
+# Short Text [<img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right">][postcss]
 
-<img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
+[![NPM Version][npm-img]][npm-url]
+[![Build Status][cli-img]][cli-url]
+[![Licensing][lic-img]][lic-url]
+[![Gitter Chat][git-img]][git-url]
 
 [Short Text] is a [PostCSS] plugin that lets you use a shorthand `text` property in CSS.
 
@@ -133,8 +136,15 @@ Default: `null`
 
 Specifies a prefix to be surrounded by dashes before the declaration (e.g. `-x-text`).
 
-[ci]: https://travis-ci.org/jonathantneal/postcss-short-text
-[ci-img]: https://travis-ci.org/jonathantneal/postcss-short-text.svg
+[cli-url]: https://github.com/csstools/postcss-short-text/actions/workflows/ci.yaml
+[cli-img]: https://github.com/csstools/postcss-short-text/actions/workflows/ci.yaml/badge.svg
+[git-url]: https://gitter.im/postcss/postcss
+[git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
+[lic-url]: LICENSE.md
+[lic-img]: https://img.shields.io/npm/l/postcss-short-text.svg
+[npm-url]: https://www.npmjs.com/package/postcss-short-text
+[npm-img]: https://img.shields.io/npm/v/postcss-short-text.svg
+
 [Gulp PostCSS]: https://github.com/postcss/gulp-postcss
 [Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
 [PostCSS]: https://github.com/postcss/postcss

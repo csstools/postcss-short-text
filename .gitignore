@@ -1,2 +1,10 @@
-node_modules/
-npm-debug.log
+node_modules
+package-lock.json
+yarn.lock
+.*
+!.editorconfig
+!.gitignore
+!.tape.js
+!.github
+*.log*
+*.result.css

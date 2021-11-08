@@ -1,0 +1,7 @@
+section {
+	text: bold center uppercase dimgrey 1.25em 1.5 .05em;
+}
+
+article {
+	text: 1.25em * .05em;
+}
